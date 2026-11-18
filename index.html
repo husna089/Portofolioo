@@ -1,0 +1,650 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Asmaul Husna | Software Developer & Live Host</title>
+    
+    <!-- Google Fonts: Plus Jakarta Sans & Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Plus+Jakarta+Sans:wght@600;700;800&display=swap" rel="stylesheet">
+    
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        sans: ['Inter', 'sans-serif'],
+                        heading: ['Plus Jakarta Sans', 'sans-serif'],
+                    },
+                    colors: {
+                        baby: {
+                            50: '#FFFDF5',   /* Warm Cream White - Background sangat lembut */
+                            100: '#FEFCE8',  /* Soft Pale Yellow */
+                            200: '#FEF08A',  /* Light Baby Yellow */
+                            300: '#FDE047',  /* Classic Baby Yellow */
+                            400: '#FACC15',  /* Vibrant Baby Yellow */
+                            500: '#CA8A04',  /* Warm Golden Yellow Accent (kontras tinggi untuk teks/ikon) */
+                            900: '#422006',  /* Deep Warm Brown untuk teks */
+                        }
+                    },
+                    animation: {
+                        'float-slow': 'float 6s ease-in-out infinite',
+                        'float-delayed': 'float 7s ease-in-out 2s infinite',
+                        'pulse-soft': 'pulse 4s cubic-bezier(0.4, 0, 0.6, 1) infinite',
+                    },
+                    keyframes: {
+                        float: {
+                            '0%, 100%': { transform: 'translateY(0px)' },
+                            '50%': { transform: 'translateY(-14px)' },
+                        }
+                    }
+                }
+            }
+        }
+    </script>
+
+    <!-- Custom CSS for Glassmorphism, Print & Scrollbar -->
+    <style>
+        body {
+            background-color: #F0F8FF;
+            color: #0F172A;
+            overflow-x: hidden;
+        }
+
+        .glass-card {
+            background: rgba(255, 255, 255, 0.82);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            border: 1px solid rgba(253, 224, 71, 0.55);
+            box-shadow: 0 10px 30px -5px rgba(250, 204, 21, 0.18);
+        }
+
+        .glass-nav {
+            background: rgba(255, 253, 245, 0.88);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(253, 224, 71, 0.45);
+        }
+
+        /* Blob dekoratif mengambang */
+        .gradient-text {
+            background: linear-gradient(135deg, #1E3A8A 0%, #0284C7 55%, #38BDF8 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        /* Print / Save PDF Styling */
+        @media print {
+            body {
+                background: #FFFFFF !important;
+                color: #0F172A !important;
+            }
+            .no-print {
+                display: none !important;
+            }
+            .glass-card {
+                background: #FFFFFF !important;
+                box-shadow: none !important;
+                border: 1px solid #CBD5E1 !important;
+                backdrop-filter: none !important;
+            }
+            section {
+                padding-top: 1.5rem !important;
+                padding-bottom: 1.5rem !important;
+                page-break-inside: avoid;
+            }
+        }
+    </style>
+</head>
+<body class="antialiased selection:bg-baby-300 selection:text-baby-900 relative">
+
+    <!-- Decorative Ambient Background Blobs -->
+    <div class="fixed inset-0 -z-10 overflow-hidden pointer-events-none no-print">
+        <div class="absolute -top-24 -left-24 w-96 h-96 bg-baby-300/35 rounded-full blur-3xl animate-pulse-soft"></div>
+        <div class="absolute top-1/3 -right-24 w-[28rem] h-[28rem] bg-baby-200/50 rounded-full blur-3xl animate-float-slow"></div>
+        <div class="absolute -bottom-32 left-1/4 w-96 h-96 bg-baby-400/20 rounded-full blur-3xl"></div>
+    </div>
+
+    <!-- Navbar -->
+    <header class="fixed top-0 inset-x-0 z-50 glass-nav transition-all duration-300 no-print">
+        <div class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex items-center justify-between h-16 sm:h-20">
+                <!-- Brand Logo -->
+                <a href="#" class="flex items-center gap-2.5 group">
+                    <div class="w-10 h-10 rounded-xl bg-gradient-to-br from-baby-300 to-baby-400 flex items-center justify-center text-baby-900 font-heading font-extrabold text-lg shadow-md shadow-baby-300/40 group-hover:scale-105 transition-transform">
+                        AH
+                    </div>
+                    <span class="font-heading font-bold text-lg sm:text-xl text-baby-800 tracking-tight">
+                        Asmaul<span class="text-baby-400">.</span>
+                    </span>
+                </a>
+
+                <!-- Desktop Navigation -->
+                <nav class="hidden md:flex items-center gap-7 text-sm font-medium text-slate-700">
+                    <a href="#tentang" class="hover:text-baby-500 transition-colors">Tentang</a>
+                    <a href="#pendidikan" class="hover:text-baby-500 transition-colors">Pendidikan</a>
+                    <a href="#keahlian" class="hover:text-baby-500 transition-colors">Keahlian</a>
+                    <a href="#pengalaman" class="hover:text-baby-500 transition-colors">Pengalaman</a>
+                    <a href="#kontak" class="px-4 py-2 rounded-full bg-baby-800 text-white hover:bg-baby-500 transition-all shadow-sm">
+                        Hubungi Saya
+                    </a>
+                </nav>
+
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" aria-label="Buka Menu" class="md:hidden p-2.5 rounded-xl text-baby-800 hover:bg-baby-200/50 transition-colors">
+                    <i class="fa-solid fa-bars text-xl"></i>
+                </button>
+            </div>
+        </div>
+
+        <!-- Mobile Dropdown Navigation -->
+        <div id="mobile-menu" class="hidden md:hidden bg-white/95 backdrop-blur-lg border-b border-baby-200 px-4 pt-2 pb-5 space-y-2 shadow-lg">
+            <a href="#tentang" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-baby-100 hover:text-baby-800">Tentang Saya</a>
+            <a href="#pendidikan" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-baby-100 hover:text-baby-800">Pendidikan</a>
+            <a href="#keahlian" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-baby-100 hover:text-baby-800">Keahlian & Tools</a>
+            <a href="#pengalaman" class="mobile-link block px-4 py-2.5 rounded-xl text-slate-700 font-medium hover:bg-baby-100 hover:text-baby-800">Pengalaman Kerja</a>
+            <a href="#kontak" class="mobile-link block px-4 py-2.5 rounded-xl bg-baby-300/40 text-baby-800 font-semibold text-center mt-2">Kontak</a>
+        </div>
+    </header>
+
+    <!-- Main Content -->
+    <main class="pt-24 sm:pt-32 pb-16">
+        
+        <!-- 1. HERO SECTION -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pb-16 sm:pb-24">
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-8 items-center">
+                
+                <!-- Left Text Content -->
+                <div class="lg:col-span-7 text-center lg:text-left space-y-6">
+                    <div class="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/80 border border-baby-300/70 shadow-sm text-xs sm:text-sm font-semibold text-baby-800">
+                        <span class="w-2.5 h-2.5 rounded-full bg-baby-400 animate-ping"></span>
+                        <span>Available for Tech & Creative Opportunities</span>
+                    </div>
+
+                    <h1 class="font-heading text-4xl sm:text-5xl lg:text-6xl font-extrabold tracking-tight text-baby-900 leading-tight">
+                        Halo, Saya <br class="hidden sm:inline" />
+                        <span class="gradient-text">Asmaul Husna</span>
+                    </h1>
+
+                    <p class="font-heading text-lg sm:text-xl font-semibold text-baby-800">
+                        Information Systems Graduate &bull; Software Developer &bull; Live Host
+                    </p>
+
+                    <p class="text-slate-600 text-base sm:text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed">
+                        Menjembatani logika pengembangan perangkat lunak modern dengan komunikasi publik yang energik dan persuasif. Lulusan Sistem Informasi yang siap menghadirkan solusi digital inovatif sekaligus membangun interaksi audiens yang berkesan.
+                    </p>
+
+                    <!-- Tombol CTA -->
+                    <div class="pt-3 flex flex-wrap items-center justify-center md:justify-start gap-3 no-print">
+                        <a href="https://wa.me/6289529824117?text=Halo%20Asmaul%20Husna,%20saya%20tertarik%20dengan%20profil%20CV%20Anda." target="_blank" rel="noopener noreferrer" 
+                           class="inline-flex items-center gap-2.5 px-6 py-3 rounded-2xl bg-gradient-to-r from-baby-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-900 font-bold text-sm shadow-md shadow-baby-300/60 transition-all hover:-translate-y-0.5">
+                            <i class="fa-brands fa-whatsapp text-lg"></i>
+                            <span>Hubungi WhatsApp</span>
+                        </a>
+
+                        <a href="mailto:ahusnaaa52@gmail.com" 
+                           class="inline-flex items-center gap-2.5 px-6 py-3.5 rounded-2xl bg-white hover:bg-baby-100 text-baby-800 border border-baby-300 font-semibold text-sm sm:text-base shadow-sm hover:-translate-y-0.5 transition-all">
+                            <i class="fa-regular fa-envelope text-lg text-baby-500"></i>
+                            <span>Kirim Email</span>
+                        </a>
+
+                        <button onclick="window.print()" 
+                        <button type="submit" 
+                                class="w-full py-2.5 px-4 rounded-xl bg-gradient-to-r from-baby-400 to-amber-500 hover:from-amber-500 hover:to-amber-600 text-slate-900 font-bold text-sm shadow-sm transition-all flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-paper-plane"></i>
+                            <span>Kirim Sekarang</span>
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Right Floating Profile Visual Card -->
+                <div class="lg:col-span-5 flex justify-center relative">
+                    <div class="relative w-full max-w-sm">
+                        <!-- Floating Badge Top Left -->
+                        <div class="hidden sm:flex items-center gap-2.5 px-4 py-2.5 rounded-2xl glass-card absolute -top-5 -left-6 z-20 animate-float-slow no-print">
+                            <div class="w-9 h-9 rounded-xl bg-baby-300/40 flex items-center justify-center text-baby-800">
+                                <i class="fa-solid fa-code"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-baby-900">Full-Stack & Web</p>
+                                <p class="text-[11px] text-slate-500">JS, TS, Python, Node</p>
+                            </div>
+                        </div>
+
+                        <!-- Floating Badge Bottom Right -->
+                        <div class="hidden sm:flex items-center gap-2.5 px-4 py-2.5 rounded-2xl glass-card absolute -bottom-5 -right-5 z-20 animate-float-delayed no-print">
+                            <div class="w-9 h-9 rounded-xl bg-baby-400/30 flex items-center justify-center text-baby-800">
+                                <i class="fa-solid fa-microphone-lines"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold text-baby-900">Live Host</p>
+                                <p class="text-[11px] text-slate-500">Public Engagement</p>
+                            </div>
+                        </div>
+
+                        <!-- Main Profile Card -->
+                        <div class="glass-card rounded-3xl p-7 text-center relative z-10">
+                            <div class="w-28 h-28 mx-auto rounded-3xl bg-gradient-to-tr from-baby-300 via-baby-200 to-baby-400 p-1 shadow-inner mb-5">
+                                <div class="w-full h-full rounded-[20px] bg-white flex flex-col items-center justify-center text-baby-800">
+                                    <span class="font-heading text-3xl font-extrabold tracking-wider gradient-text">AH</span>
+                                    <span class="text-[10px] font-semibold uppercase tracking-widest text-slate-400 mt-0.5">Portfolio</span>
+                                </div>
+                            </div>
+
+                            <h2 class="font-heading text-xl font-bold text-baby-900">Asmaul Husna</h2>
+                            <p class="text-sm text-baby-500 font-medium mt-1">S1 Sistem Informasi</p>
+                            <p class="text-xs text-slate-500 mt-0.5">Universitas Nahdlatul Ulama Kalimantan Barat</p>
+
+                            <div class="my-5 border-t border-baby-200/80"></div>
+
+                            <!-- Quick Info List -->
+                            <div class="space-y-2.5 text-left text-xs sm:text-sm">
+                                <div class="flex items-center gap-3 text-slate-700 bg-baby-50/90 px-3.5 py-2 rounded-xl">
+                                    <i class="fa-solid fa-envelope text-baby-500 w-4 text-center"></i>
+                                    <span class="truncate">ahusnaaa52@gmail.com</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-slate-700 bg-baby-50/90 px-3.5 py-2 rounded-xl">
+                                    <i class="fa-solid fa-phone text-baby-500 w-4 text-center"></i>
+                                    <span>089529824117</span>
+                                </div>
+                                <div class="flex items-center gap-3 text-slate-700 bg-baby-50/90 px-3.5 py-2 rounded-xl">
+                                    <i class="fa-solid fa-language text-baby-500 w-4 text-center"></i>
+                                    <span>Bahasa Indonesia & English</span>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 2. TENTANG SAYA (ABOUT) -->
+        <section id="tentang" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="glass-card rounded-3xl p-7 sm:p-10">
+                <div class="flex flex-col md:flex-row gap-8 items-start md:items-center justify-between">
+                    <div class="space-y-4 max-w-3xl">
+                        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-baby-500">
+                            <i class="fa-solid fa-user-astronaut"></i>
+                            <span>Tentang Saya</span>
+                        </div>
+                        <h2 class="font-heading text-2xl sm:text-3xl font-bold text-baby-900">
+                            Perpaduan Analitis Teknologi & Komunikasi Interaktif
+                        </h2>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Saya adalah lulusan Program Studi <strong>Sistem Informasi</strong> dari <strong>Universitas Nahdlatul Ulama Kalimantan Barat</strong> yang memiliki ketertarikan mendalam pada pengembangan aplikasi web modern menggunakan ekosistem <strong>JavaScript, TypeScript, Node.js, dan Python</strong>. 
+                        </p>
+                        <p class="text-slate-600 leading-relaxed text-sm sm:text-base">
+                            Selain kemampuan teknis pemrograman dan perancangan antarmuka (UI/UX dengan Figma), pengalaman kerja saya sebagai <strong>Host Live Streaming</strong> mengasah kemampuan komunikasi publik, penyampaian informasi secara persuasif, manajemen waktu *real-time*, serta kemampuan beradaptasi tinggi di depan audiens yang dinamis.
+                        </p>
+                    </div>
+
+                    <!-- Highlight Pillars -->
+                    <div class="grid grid-cols-2 md:grid-cols-1 gap-3.5 w-full md:w-64 shrink-0">
+                        <div class="p-4 rounded-2xl bg-baby-50 border border-baby-200">
+                            <div class="text-baby-500 text-lg mb-1"><i class="fa-solid fa-laptop-code"></i></div>
+                            <h3 class="font-heading font-bold text-sm text-baby-900">Tech & Logic</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Pengembangan sistem & kode terstruktur</p>
+                        </div>
+                        <div class="p-4 rounded-2xl bg-baby-50 border border-baby-200">
+                            <div class="text-baby-500 text-lg mb-1"><i class="fa-solid fa-tower-broadcast"></i></div>
+                            <h3 class="font-heading font-bold text-sm text-baby-900">Public Speaking</h3>
+                            <p class="text-xs text-slate-500 mt-0.5">Interaksi audiens & presentasi aktif</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- 3. PENDIDIKAN & PENGALAMAN (2-Column Grid on Desktop) -->
+        <section class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                
+                <!-- PENDIDIKAN -->
+                <div id="pendidikan" class="glass-card rounded-3xl p-7 sm:p-9 flex flex-col justify-between">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-baby-500 mb-3">
+                            <i class="fa-solid fa-graduation-cap"></i>
+                            <span>Pendidikan</span>
+                        </div>
+                        <h2 class="font-heading text-2xl font-bold text-baby-900 mb-6">Latar Belakang Akademik</h2>
+
+                        <div class="relative pl-6 border-l-2 border-baby-300 space-y-3">
+                            <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-baby-400 ring-4 ring-baby-100"></div>
+                            
+                            <span class="inline-block px-3 py-1 rounded-full bg-baby-200/70 text-baby-800 text-xs font-semibold">
+                                Sarjana (S1)
+                            </span>
+                            
+                            <h3 class="font-heading text-lg sm:text-xl font-bold text-baby-900">
+                                Universitas Nahdlatul Ulama Kalimantan Barat
+                            </h3>
+                            
+                            <p class="text-baby-500 font-semibold text-sm sm:text-base">
+                                Program Studi Sistem Informasi
+                            </p>
+                            
+                            <p class="text-slate-600 text-sm leading-relaxed pt-1">
+                                Mempelajari analisis dan perancangan sistem informasi, pengembangan perangkat lunak, manajemen basis data, serta pemanfaatan teknologi informasi untuk kebutuhan bisnis dan organisasi.
+                            </p>
+                        </div>
+                    </div>
+
+                    <div class="mt-8 pt-5 border-t border-baby-200/70 flex items-center gap-3 text-xs text-slate-500">
+                        <i class="fa-solid fa-location-dot text-baby-500"></i>
+                        <span>Kalimantan Barat, Indonesia</span>
+                    </div>
+                </div>
+
+                <!-- PENGALAMAN KERJA -->
+                <div id="pengalaman" class="glass-card rounded-3xl p-7 sm:p-9 flex flex-col justify-between">
+                    <div>
+                        <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-baby-500 mb-3">
+                            <i class="fa-solid fa-briefcase"></i>
+                            <span>Pengalaman Kerja</span>
+                        </div>
+                        <h2 class="font-heading text-2xl font-bold text-baby-900 mb-6">Pengalaman Profesional</h2>
+
+                        <div class="relative pl-6 border-l-2 border-baby-300 space-y-3">
+                            <div class="absolute -left-[9px] top-1 w-4 h-4 rounded-full bg-baby-800 ring-4 ring-baby-100"></div>
+                            
+                            <span class="inline-block px-3 py-1 rounded-full bg-baby-800 text-white text-xs font-semibold">
+                                Live Streaming & Komunikasi
+                            </span>
+                            
+                            <h3 class="font-heading text-lg sm:text-xl font-bold text-baby-900">
+                                Host Live Streaming
+                            </h3>
+                            
+                            <p class="text-baby-500 font-semibold text-sm">
+                                Presenter & Audience Engagement Specialist
+                            </p>
+                            
+                            <ul class="space-y-2.5 text-slate-600 text-sm pt-2">
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-baby-400 mt-1 shrink-0"></i>
+                                    <span>Memandu sesi siaran langsung secara interaktif, komunikatif, dan energik untuk menjaga retensi penonton.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-baby-400 mt-1 shrink-0"></i>
+                                    <span>Mempresentasikan informasi dan keunggulan produk secara jelas serta menjawab pertanyaan audiens secara *real-time*.</span>
+                                </li>
+                                <li class="flex items-start gap-2.5">
+                                    <i class="fa-solid fa-circle-check text-baby-400 mt-1 shrink-0"></i>
+                                    <span>Mampu beradaptasi cepat terhadap perubahan skenario siaran serta menjaga konsistensi performa di depan kamera.</span>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 4. KEAHLIAN & TOOLS (SKILLS) -->
+        <section id="keahlian" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
+            <div class="text-center max-w-2xl mx-auto mb-10 space-y-2">
+                <div class="inline-flex items-center gap-2 text-xs font-bold uppercase tracking-wider text-baby-500">
+                    <i class="fa-solid fa-layer-group"></i>
+                    <span>Kompetensi & Teknologi</span>
+                </div>
+                <h2 class="font-heading text-2xl sm:text-3xl font-bold text-baby-900">
+                    Keahlian, Tools & Bahasa
+                </h2>
+                <p class="text-slate-600 text-sm sm:text-base">
+                    Perangkat teknologi dan keterampilan yang saya gunakan untuk membangun solusi digital.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                
+                <!-- Kategori 1: Programming & Tech -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-baby-200/70 flex items-center justify-center text-baby-800 text-xl mb-5">
+                        <i class="fa-solid fa-terminal"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-baby-900 mb-1">Programming & Tech</h3>
+                    <p class="text-xs text-slate-500 mb-5">Bahasa pemrograman & runtime utama</p>
+
+                    <div class="grid grid-cols-2 gap-3">
+                        <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-baby-200 hover:border-baby-400 hover:bg-baby-50 transition-colors">
+                            <i class="fa-brands fa-js text-amber-500 text-lg"></i>
+                            <span class="font-semibold text-sm text-baby-900">JavaScript</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-baby-200 hover:border-baby-400 hover:bg-baby-50 transition-colors">
+                            <i class="fa-brands fa-python text-sky-600 text-lg"></i>
+                            <span class="font-semibold text-sm text-baby-900">Python</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-baby-200 hover:border-baby-400 hover:bg-baby-50 transition-colors">
+                            <i class="fa-brands fa-node-js text-emerald-600 text-lg"></i>
+                            <span class="font-semibold text-sm text-baby-900">Node.js</span>
+                        </div>
+                        <div class="flex items-center gap-2.5 p-3 rounded-2xl bg-white/90 border border-baby-200 hover:border-baby-400 hover:bg-baby-50 transition-colors">
+                            <span class="w-5 h-5 rounded bg-blue-600 text-white text-[10px] font-bold flex items-center justify-center">TS</span>
+                            <span class="font-semibold text-sm text-baby-900">TypeScript</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori 2: Tools & Desain -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-baby-200/70 flex items-center justify-center text-baby-800 text-xl mb-5">
+                        <i class="fa-solid fa-screwdriver-wrench"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-baby-900 mb-1">Tools & Desain</h3>
+                    <p class="text-xs text-slate-500 mb-5">Lingkungan kerja & kolaborasi</p>
+
+                    <div class="space-y-3">
+                        <div class="flex items-center justify-between p-3 rounded-2xl bg-white/90 border border-baby-200 hover:border-baby-400 hover:bg-baby-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-brands fa-git-alt text-orange-600 text-xl w-5 text-center"></i>
+                                <span class="font-semibold text-sm text-baby-900">Git</span>
+                            </div>
+                            <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-baby-100 text-baby-800">Version Control</span>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-2xl bg-white/90 border border-baby-200 hover:border-baby-400 hover:bg-baby-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-solid fa-code text-sky-500 text-lg w-5 text-center"></i>
+                                <span class="font-semibold text-sm text-baby-900">VS Code</span>
+                            </div>
+                            <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-baby-100 text-baby-800">Code Editor</span>
+                        </div>
+
+                        <div class="flex items-center justify-between p-3 rounded-2xl bg-white/90 border border-baby-200 hover:border-baby-400 hover:bg-baby-50 transition-colors">
+                            <div class="flex items-center gap-3">
+                                <i class="fa-brands fa-figma text-purple-600 text-lg w-5 text-center"></i>
+                                <span class="font-semibold text-sm text-baby-900">Figma</span>
+                            </div>
+                            <span class="text-[11px] font-medium px-2.5 py-0.5 rounded-full bg-baby-100 text-baby-800">UI/UX Design</span>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Kategori 3: Bahasa & Soft Skills -->
+                <div class="glass-card rounded-3xl p-6 sm:p-7 hover:-translate-y-1 transition-transform duration-300">
+                    <div class="w-12 h-12 rounded-2xl bg-baby-200/70 flex items-center justify-center text-baby-800 text-xl mb-5">
+                        <i class="fa-solid fa-comments"></i>
+                    </div>
+                    <h3 class="font-heading text-lg font-bold text-baby-900 mb-1">Bahasa & Komunikasi</h3>
+                    <p class="text-xs text-slate-500 mb-5">Kemampuan linguistik & interpersonal</p>
+
+                    <div class="space-y-3">
+                        <div class="p-3.5 rounded-2xl bg-white/90 border border-baby-200">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-semibold text-sm text-baby-900 flex items-center gap-2">
+                                    <i class="fa-solid fa-earth-americas text-baby-500"></i>
+                                    English
+                                </span>
+                                <span class="text-xs font-semibold text-baby-500">Active / Tech Literacy</span>
+                            </div>
+                            <div class="w-full bg-baby-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-baby-300 to-baby-500 h-full rounded-full w-4/5"></div>
+                            </div>
+                        </div>
+
+                        <div class="p-3.5 rounded-2xl bg-white/90 border border-baby-200">
+                            <div class="flex items-center justify-between mb-1.5">
+                                <span class="font-semibold text-sm text-baby-900 flex items-center gap-2">
+                                    <i class="fa-solid fa-microphone text-baby-500"></i>
+                                    Public Speaking & Hosting
+                                </span>
+                                <span class="text-xs font-semibold text-baby-500">Experienced</span>
+                            </div>
+                            <div class="w-full bg-baby-100 h-2 rounded-full overflow-hidden">
+                                <div class="bg-gradient-to-r from-baby-300 to-baby-500 h-full rounded-full w-[92%]"></div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+
+        <!-- 5. KONTAK INTERAKTIF -->
+        <section id="kontak" class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 pt-8 pb-6">
+            <div class="glass-card rounded-3xl p-8 sm:p-12 relative overflow-hidden">
+                <!-- Decorative subtle corner circle -->
+                <div class="absolute -right-16 -bottom-16 w-64 h-64 rounded-full bg-baby-300/30 pointer-events-none"></div>
+
+                <div class="grid grid-cols-1 lg:grid-cols-12 gap-8 items-center relative z-10">
+                    <div class="lg:col-span-6 space-y-4">
+                        <span class="inline-block px-3.5 py-1 rounded-full bg-baby-200/80 text-baby-800 text-xs font-bold uppercase tracking-wider">
+                            Mari Terhubung
+                        </span>
+                        <h2 class="font-heading text-2xl sm:text-4xl font-extrabold text-baby-900 leading-tight">
+                            Tertarik Bekerja Sama dengan Saya?
+                        </h2>
+                        <p class="text-slate-600 text-sm sm:text-base leading-relaxed">
+                            Jangan ragu untuk menghubungi saya melalui email atau WhatsApp untuk diskusi peluang kerja, proyek pengembangan web, maupun kolaborasi *live hosting*.
+                        </p>
+                    </div>
+
+                    <div class="lg:col-span-6 space-y-4">
+                        <!-- Email Card with Copy Button -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 sm:p-5 rounded-2xl bg-white/95 border border-baby-200 shadow-sm">
+                            <div class="flex items-center gap-3.5 min-w-0">
+                                <div class="w-11 h-11 rounded-xl bg-baby-100 text-baby-800 flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-solid fa-envelope"></i>
+                                </div>
+                                <div class="min-w-0">
+                                    <p class="text-xs font-medium text-slate-400">Email</p>
+                                    <a href="mailto:ahusnaaa52@gmail.com" class="font-heading font-bold text-sm sm:text-base text-baby-900 hover:text-baby-500 transition-colors block truncate">
+                                        ahusnaaa52@gmail.com
+                                    </a>
+                                </div>
+                            </div>
+                            <button onclick="copyText('ahusnaaa52@gmail.com', 'Alamat email berhasil disalin!')" 
+                                    class="no-print inline-flex items-center justify-center gap-2 px-4 py-2 rounded-xl bg-baby-100 hover:bg-baby-300/60 text-baby-800 text-xs font-semibold transition-colors shrink-0">
+                                <i class="fa-regular fa-copy"></i>
+                                <span>Salin Email</span>
+                            </button>
+                        </div>
+
+                        <!-- WhatsApp / Phone Card with Copy Button -->
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 p-4 sm:p-5 rounded-2xl bg-white/95 border border-baby-200 shadow-sm">
+                            <div class="flex items-center gap-3.5">
+                                <div class="w-11 h-11 rounded-xl bg-baby-100 text-baby-800 flex items-center justify-center text-lg shrink-0">
+                                    <i class="fa-brands fa-whatsapp"></i>
+                                </div>
+                                <div>
+                                    <p class="text-xs font-medium text-slate-400">Telepon / WhatsApp</p>
+                                    <a href="https://wa.me/6289529824117" target="_blank" rel="noopener noreferrer" class="font-heading font-bold text-sm sm:text-base text-baby-900 hover:text-baby-500 transition-colors">
+                                        089529824117
+                                    </a>
+                                </div>
+                            </div>
+                            <div class="flex items-center gap-2 no-print">
+                                <button onclick="copyText('089529824117', 'Nomor telepon berhasil disalin!')" 
+                                        class="inline-flex items-center justify-center gap-1.5 px-3.5 py-2 rounded-xl bg-baby-100 hover:bg-baby-300/60 text-baby-800 text-xs font-semibold transition-colors">
+                                    <i class="fa-regular fa-copy"></i>
+                                    <span>Salin</span>
+                                </button>
+                                <a href="https://wa.me/6289529824117" target="_blank" rel="noopener noreferrer"
+                                   class="inline-flex items-center justify-center gap-1.5 px-4 py-2 rounded-xl bg-baby-800 hover:bg-baby-500 text-white text-xs font-semibold transition-colors">
+                                    <span>Chat WA</span>
+                                    <i class="fa-solid fa-arrow-up-right-from-square text-[10px]"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </main>
+
+    <!-- Footer -->
+    <footer class="max-w-6xl mx-auto px-4 sm:px-6 lg:px-8 py-8 text-center text-xs sm:text-sm text-slate-500 border-t border-baby-200/60">
+        <p>&copy; <span id="current-year"></span> <strong class="text-baby-800">Asmaul Husna</strong>. Dibuat dengan penuh ketelitian &bull; S1 Sistem Informasi UNU Kalbar.</p>
+    </footer>
+
+    <!-- Toast Notification (for Copy to Clipboard) -->
+    <div id="toast" class="fixed bottom-6 right-6 z-50 transform translate-y-20 opacity-0 transition-all duration-300 pointer-events-none no-print">
+        <div class="flex items-center gap-3 px-5 py-3.5 rounded-2xl bg-baby-900 text-white text-sm font-medium shadow-xl border border-baby-400/30">
+            <i class="fa-solid fa-circle-check text-baby-300 text-base"></i>
+            <span id="toast-message">Berhasil disalin!</span>
+        </div>
+    </div>
+
+    <!-- Interactive Scripts -->
+    <script>
+        // Set dynamic current year
+        document.getElementById('current-year').textContent = new Date().getFullYear();
+
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileLinks = document.querySelectorAll('.mobile-link');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('hidden');
+        });
+
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.add('hidden');
+            });
+        });
+
+        // Copy to Clipboard with Toast Notification (using fallback execCommand for iframe compatibility)
+        let toastTimeout;
+        function copyText(text, message) {
+            try {
+                const tempInput = document.createElement('textarea');
+                tempInput.value = text;
+                tempInput.style.position = 'fixed';
+                tempInput.style.opacity = '0';
+                document.body.appendChild(tempInput);
+                tempInput.select();
+                document.execCommand('copy');
+                document.body.removeChild(tempInput);
+                showToast(message);
+            } catch (err) {
+                showToast('Gagal menyalin teks.');
+            }
+        }
+
+        function showToast(message) {
+            const toast = document.getElementById('toast');
+            const toastMsg = document.getElementById('toast-message');
+            toastMsg.textContent = message;
+
+            toast.classList.remove('translate-y-20', 'opacity-0');
+            toast.classList.add('translate-y-0', 'opacity-100');
+
+            clearTimeout(toastTimeout);
+            toastTimeout = setTimeout(() => {
+                toast.classList.remove('translate-y-0', 'opacity-100');
+                toast.classList.add('translate-y-20', 'opacity-0');
+            }, 3000);
+        }
+    </script>
+</body>
+</html>
